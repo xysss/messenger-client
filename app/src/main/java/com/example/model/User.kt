@@ -1,23 +1,27 @@
-package com.example.messengerclientdemo
+package com.example.model
 
 import android.os.Parcel
 import android.os.Parcelable
 
 /**
  * 作者 : xys
- * 时间 : 2022-06-06 14:37
+ * 时间 : 2022-06-08 11:28
  * 描述 : 描述
  */
+data class User(
+    val name: String?,
+    val age: Int
+): Parcelable {
 
-class User(var age: Int, var name: String?): Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString()) {
+        parcel.readString(),
+        parcel.readInt()
+    ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(age)
         parcel.writeString(name)
+        parcel.writeInt(age)
     }
 
     override fun describeContents(): Int {

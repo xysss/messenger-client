@@ -8,7 +8,9 @@ import android.os.*
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.messengerclientdemo.databinding.ActivityMessengerBinding
-import model.Person
+import com.example.model.Person
+import com.example.model.User
+import com.example.model.UserS
 
 
 /**
@@ -70,17 +72,21 @@ class MessengerActivity : AppCompatActivity(){
         val message = Message.obtain(null, WHAT1, 0, 0)
         //注意 这里是新增的
         message.replyTo = mClientMessenger
-        val user= User(25,"小明")
         val person= Person("小美",24)
+
+        val user= User("小美",24)
+
+        val userS= UserS("小美",24)
 
 //        message.data=Bundle().apply {
 //            putString("data","12334")
 //        }
 
         message.data = Bundle().apply {
-            //putParcelable("user", user)
-            putParcelable("person", person)
+            putSerializable("person", userS)
+            //putParcelable("person", person)
         }
+
         try {
             mService?.send(message)
         } catch (e: RemoteException) {
