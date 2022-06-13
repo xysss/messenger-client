@@ -18,9 +18,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures {
-        viewBinding true
-    }
+//    buildFeatures {
+//        viewBinding true
+//    }
     buildTypes {
         release {
             minifyEnabled false
@@ -45,4 +45,14 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //加入两个不同的photoview
+    //implementation 'com.github.chrisbanes:PhotoView:latest.release.here'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    implementation 'com.bm.photoview:library:1.4.1'
+    //加入glide的依赖项
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    //glide的摭展依赖项
+    implementation 'jp.wasabeef:glide-transformations:3.0.1'
 }
