@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Messengerclientdemo">
         <activity
-            android:name="com.example.messengerclientdemo.MessengerActivity"
+            android:name=".MessengerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

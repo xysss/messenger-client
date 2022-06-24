@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,15 +16,31 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnSayHello"/>
 
+    <TextView
+        android:hint="显示数据"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/showText"/>
+
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/photo_view"
+        android:src="@drawable/a"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <com.bm.library.PhotoView
+        android:src="@drawable/a"
+        android:id="@+id/photo_view2"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 
-    <com.bm.library.PhotoView
-        android:id="@+id/photo_view2"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+    <ImageView
+        android:src="@drawable/a"
+        android:id="@+id/imageView1"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        tools:ignore="ContentDescription" />
 
 </LinearLayout>
