@@ -1,27 +1,20 @@
 package com.example.messengerclientdemo
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.graphics.*
 import android.os.*
 import android.util.Log
-import android.view.MotionEvent
-import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.MultiTransformation
-import com.bumptech.glide.request.RequestOptions
 import com.example.model.Person
 import com.example.model.User
 import com.example.model.UserS
-import jp.wasabeef.glide.transformations.BlurTransformation
-import jp.wasabeef.glide.transformations.GrayscaleTransformation
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import com.tbruyelle.rxpermissions2.RxPermissions
 import java.lang.ref.WeakReference
 
 
@@ -77,6 +70,9 @@ class MessengerActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_messenger)
 
+        //请求权限
+        requestCameraPermissions()
+
 //        viewBinding = ActivityMessengerBinding.inflate(layoutInflater)
 //        setContentView(viewBinding.root)
 
@@ -91,6 +87,22 @@ class MessengerActivity : AppCompatActivity() {
             sayHello()
         }
 
+    }
+
+    /**
+     * 请求相机权限
+     */
+    @SuppressLint("CheckResult")
+    private fun requestCameraPermissions() {
+        //请求打开相机权限
+        val rxPermissions = RxPermissions(this)
+        rxPermissions.request(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE).subscribe { aBoolean ->
+
+        }
     }
 
     private fun sayHello() {
@@ -122,11 +134,17 @@ class MessengerActivity : AppCompatActivity() {
     }
 
     private fun connectService() {
+        val componentName = ComponentName(
+            "com.example.messengerservicedemo",
+            "com.example.messengerservicedemo.MessengerService"
+        )
         Intent().apply {
             action = "com.example.messenger.Server.Action"
-            setPackage("com.example.messengerservicedemo")
+            component = componentName
+            //addCategory("com.example.messenger.MY_CATEGORY")
+            //setPackage("com.example.messengerservicedemo")
         }.also { intent ->
-            bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE)
+            applicationContext.bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE)
         }
     }
 
